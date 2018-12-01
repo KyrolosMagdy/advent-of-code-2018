@@ -7,6 +7,28 @@ fs.readFile('./freq.txt', (err,data) =>{
 		return a + b ; 
 	},0)
 	console.log(answer);
+
+
+	const firstRepeatFrequency = codeArray => {
+	const hashMap = {0: true};
+	const stack = [0];
+	const answerQueue = [];
+	  // could probably improve this to break out of loop as soon as answerQueue has one item pushed to it.
+	while (!answerQueue.length) {
+	    codeArray.forEach(item => {
+	      	let currentTotal = stack.pop() + item;
+	      	stack.push(currentTotal);
+	      	if (hashMap[currentTotal]) {
+	        	answerQueue.push(currentTotal);
+	      	} else {
+	        	hashMap[currentTotal] = true;
+	      	}
+	    })
+	}
+	  return answerQueue[0];
+	}
+	console.log(firstRepeatFrequency(codeArray)); 
+
 })
 
 
